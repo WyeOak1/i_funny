@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:i_funny/screens/home/home_screens.dart';
-
-import 'constants.dart';
+import './constants.dart';
+import './screens/home/home_screens.dart';
 
 void main() {
   runApp(MyApp());
+  
 }
+
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      // debugShowCheckedModeBanner: false,
       title: kek + feed,
       theme: ThemeData(
         brightness: Brightness.light,

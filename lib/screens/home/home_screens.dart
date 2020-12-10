@@ -1,11 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../../constants.dart';
+import 'components/body.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
+      body: Body(),
+      bottomNavigationBar: buildBottomNavigationBar(),
+    );
+  }
+  
+  BottomNavigationBar buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: Colors.white,
+      onTap: (value) {
+        // Respond to item press.
+      },
+      items: [
+        BottomNavigationBarItem(
+          title: Text('Like'),
+          icon: SvgPicture.asset('assets/icons/like.svg'),
+        ),
+        BottomNavigationBarItem(
+          title: Text('Music'),
+          icon: SvgPicture.asset('assets/icons/dislike.svg'),
+        ),
+        BottomNavigationBarItem(
+          title: Text('Places'),
+          icon: SvgPicture.asset('assets/icons/download.svg'),
+        ),
+        BottomNavigationBarItem(
+          title: Text('News'),
+          icon: SvgPicture.asset('assets/icons/mail.svg'),
+        ),
+      ],
     );
   }
 
