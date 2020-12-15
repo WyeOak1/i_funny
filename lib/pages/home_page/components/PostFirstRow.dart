@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import '../../favorite/favorite_screens.dart';
+
 class PostFirstRow extends StatelessWidget {
-  final String urlProfilePhoto;
-  PostFirstRow({this.urlProfilePhoto});
+  final String data;
+  final int index;
+  PostFirstRow({this.data, this.index});
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -12,14 +15,19 @@ class PostFirstRow extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => FavoritePage( url: urlProfilePhoto)));
+              onTap: () {
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (BuildContext context) =>
+                //         FavoritePage(url: jsonDecode(data)['data']['content']['items'][index]
+                //         ['thumb']['proportional_webp_url'])));
               },
               child: Hero(
-                tag: urlProfilePhoto,
+                tag: jsonDecode(data)['data']['content']['items'][index]
+                        ['thumb']['proportional_webp_url'],
                 child: CircleAvatar(
                   radius: 12,
-                  backgroundImage: NetworkImage(urlProfilePhoto),
+                  backgroundImage: NetworkImage(jsonDecode(data)['data']['content']['items'][index]
+                        ['thumb']['proportional_webp_url']),
                 ),
               ),
             ),
@@ -30,7 +38,8 @@ class PostFirstRow extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Tom Smith",
+                  jsonDecode(data)['data']['content']['items'][index]
+                        ['creator']['nick'],
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -49,6 +58,8 @@ class PostFirstRow extends StatelessWidget {
         ),
         Icon(Icons.more_vert)
       ],
-    );;;
+    );
+    
+    
   }
 }
