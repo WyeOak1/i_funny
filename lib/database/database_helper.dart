@@ -42,7 +42,7 @@ class DatabaseHelper {
 
   Future<int> insert(Post post) async {
     Database db = await instance.database;
-    print(post.title);
+    print('adding '+post.title);
     return await db.insert(table, {'title': post.title, 'url': post.url});
   }
 

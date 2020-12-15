@@ -59,7 +59,5 @@ class PostFirstRow extends StatelessWidget {
         Icon(Icons.more_vert)
       ],
     );
-    
-    
   }
 }

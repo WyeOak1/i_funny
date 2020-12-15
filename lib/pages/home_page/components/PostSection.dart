@@ -61,8 +61,7 @@ class PostSection extends StatelessWidget {
                   onPressed: () {
                     _queryAll();
                     print('do  $posts.first.title');
-                    delete(jsonDecode(data)['data']['content']['items'][index]
-                        ['thumb']['proportional_webp_url']);
+                    _delete();
                     _queryAll();
                     
                     posts.forEach((element) {
@@ -100,8 +99,9 @@ class PostSection extends StatelessWidget {
     );
   }
 
-  void _delete(id) async {
-    final rowsDeleted = await dbHelper.delete(id);
+  void _delete() async {
+    final rowsDeleted = await dbHelper.delete(jsonDecode(data)['data']['content']['items'][index]
+                        ['thumb']['proportional_webp_url']);
   }
 
   void _queryAll() async {
@@ -120,8 +120,6 @@ class PostSection extends StatelessWidget {
     };
     Post post = Post.fromMap(row);
     posts.add(post);
-    print(jsonDecode(data)['data']['content']['items'][index]['id']);
-    print(row);
     final id = await dbHelper.insert(post);
   }
 }

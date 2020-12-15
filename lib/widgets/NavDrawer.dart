@@ -17,15 +17,16 @@ class NavDrawer extends StatelessWidget {
             //     image: DecorationImage(fit: BoxFit.fill, image: null)
             //     ),
           ),
-          ListTile(
-            leading: Icon(Icons.input),
-            title: Text('Welcome'),
-            onTap: () => {},
-          ),
+          
           ListTile(
             leading: Icon(Icons.verified_user),
             title: Text('Home'),
             onTap: () => {Navigator.pushNamed(context, '/')},
+          ),
+          ListTile(
+            leading: Icon(Icons.input),
+            title: Text('Favorite'),
+            onTap: () => {Navigator.pushNamed(context, '/favorite')},
           ),
           ListTile(
             leading: Icon(Icons.settings),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:i_funny/pages/favorite_page/FavoritePage.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/SettingsPage.dart';
 import 'pages/home_page/HomePage.dart';
+import 'pages/setting_page/SettingsPage.dart';
 import 'services/theme_provider.dart';
 
 void main() {
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
             initialRoute: '/',
             routes: {
               '/': (context) => HomePage(),
+              '/favorite': (context) => FavoritePage(),
               '/settings': (context) => SettingsPage(),
             },
           );
