@@ -10,7 +10,7 @@ class NavDrawer extends StatelessWidget {
           DrawerHeader(
             child: Text(
               'Side menu',
-              style: TextStyle(color: Colors.white, fontSize: 25),
+              style: TextStyle( fontSize: 25),
             ),
             // decoration: BoxDecoration(
             //     color: Colors.green,
@@ -25,8 +25,8 @@ class NavDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.input),
-            title: Text('Favorite'),
-            onTap: () => {Navigator.pushNamed(context, '/favorite')},
+            title: Text('Channels'),
+            onTap: () => {Navigator.pushNamed(context, '/channels')},
           ),
           ListTile(
             leading: Icon(Icons.settings),

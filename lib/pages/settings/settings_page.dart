@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:i_funny/services/theme_provider.dart';
-import 'package:i_funny/widgets/NavDrawer.dart';
+import 'package:i_funny/services/theme_notifired.dart';
+import 'package:i_funny/widgets/nav_drawer.dart';
 import 'package:provider/provider.dart';
+
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -12,8 +13,10 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      drawer: NavDrawer(),
+      appBar: AppBar(
+          title: Text('Settings'),
+        ),
+        drawer: NavDrawer(),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
