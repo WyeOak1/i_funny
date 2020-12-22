@@ -17,7 +17,7 @@ class ChannelsPage extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: AppBar(
-          title: Text(''),
+          title: Text('Channels'),
         ),
         drawer: NavDrawer(),
         body: Column(
