@@ -10,6 +10,8 @@ class ActionButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: close_sinks
     final ChannelBloc channelBloc = BlocProvider.of<ChannelBloc>(context);
+    
+    channelBloc.add(ChannelLoadEvent());
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [

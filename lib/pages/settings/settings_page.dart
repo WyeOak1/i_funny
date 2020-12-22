@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:i_funny/services/theme_notifired.dart';
 import 'package:i_funny/widgets/nav_drawer.dart';
-import 'package:provider/provider.dart';
-
 
 class SettingsPage extends StatefulWidget {
   @override

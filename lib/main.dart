@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:i_funny/pages/channels/channels_page.dart';
 import 'package:provider/provider.dart';
+import 'package:i_funny/pages/channels/channels_page.dart';
 import 'pages/Home/HomePage.dart';
 import 'pages/settings/settings_page.dart';
 import 'services/theme_notifired.dart';
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         child: Consumer<ThemeNotifier>(
             builder: (context, ThemeNotifier notifier, child) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: notifier.darkTheme ? dark : light,
             initialRoute: '/',
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
               '/channels': (context) => ChannelsPage(),
               '/settings': (context) => SettingsPage(),
             },
+            
           );
         }));
   }

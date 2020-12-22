@@ -12,17 +12,26 @@ class PostBloc extends Bloc<PostEvent, PostState> {
 
   @override
   Stream<PostState> mapEventToState(PostEvent event) async* {
-    if (event is PostLoadEvent) {
+    if (event is FeaturedLoadEvent) {
       yield PostLoadingState();
       try {
-        final List<Post> _loadedPostList = await postRepository.getAllPost();
+        final List<Post> _loadedPostList = await postRepository.getFeaturedAllPost();
         yield PostLoadedState(loadedPost: _loadedPostList);
       } catch (e) {
         yield PostErrorState();
         print(e);
       }
-    } else if (event is PostClearEvent) {
+    } else if (event is FeaturedClearEvent) {
       yield PostEmptyState();
+    } else if (event is ChangeValue){
+      yield PostLoadingState();
+      try {
+        final List<Post> _loadedPostList = await postRepository.getChannelPosts('${event.id}');
+        yield PostLoadedState(loadedPost: _loadedPostList);
+      } catch (e) {
+        yield PostErrorState();
+        print(e);
+      }
     }
   }
 }

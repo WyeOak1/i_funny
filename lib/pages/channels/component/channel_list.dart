@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:i_funny/bloc/channel/channel_bloc.dart';
+import 'package:i_funny/bloc/channel/channel_event.dart';
 import 'package:i_funny/bloc/channel/channel_state.dart';
+import 'package:i_funny/pages/details/details_screen.dart';
 
+
+import 'item_card.dart';
 
 class ChannelList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ChannelBloc channelBloc = BlocProvider.of<ChannelBloc>(context);
+    channelBloc.add(ChannelLoadEvent());
+
     return BlocBuilder<ChannelBloc, ChannelState>(
       builder: (context, state) {
         if (state is ChannelEmptyState) {
@@ -23,52 +29,27 @@ class ChannelList extends StatelessWidget {
         }
 
         if (state is ChannelLoadedState) {
-          return Swiper(
-            itemCount: state.loadedChannel.length,
-            itemBuilder: (context, index) {
-              return Image.network(
-                state.loadedChannel[index].url,
-                fit: BoxFit.cover,
-              );
-            },
-          );
+          return GridView.builder(
+              itemCount: state.loadedChannel.length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                childAspectRatio: 0.75,
+              ),
+              itemBuilder: (context, index) => ItemCard(
+                    channel: state.loadedChannel[index],
+                    press: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DetailsScreen(
+                            channelId: state.loadedChannel[index].id,
+                          ),
+                        )),
+                  )
+                  );
         }
 
-        // if (state is ChannelLoadedState) {
-        //   return ListView.builder(
-        //     itemCount: state.loadedChannel.length,
-        //     itemBuilder: (context, index) => Container(
-        //       color: index % 2 == 0 ? Colors.white : Colors.blue[50],
-        //       child: ListTile(
-        //         leading: Text(
-        //           'ID: ${state.loadedChannel[index].id}',
-        //           style: TextStyle(fontWeight: FontWeight.bold),
-        //         ),
-        //         title: Column(
-        //           children: <Widget>[
-        //             Text(
-        //               '${state.loadedChannel[index].url}',
-        //               style: TextStyle(fontWeight: FontWeight.bold),
-        //             ),
-        //             Column(
-        //               crossAxisAlignment: CrossAxisAlignment.center,
-        //               children: <Widget>[
-        //                 Text(
-        //                   'Email: ${state.loadedChannel[index].name}',
-        //                   style: TextStyle(fontStyle: FontStyle.italic),
-        //                 ),
-        //                 Text(
-        //                   'Phone: ${state.loadedChannel[index].name}',
-        //                   style: TextStyle(fontStyle: FontStyle.italic),
-        //                 ),
-        //               ],
-        //             ),
-        //           ],
-        //         ),
-        //       ),
-        //     ),
-        //   );
-        // }
         if (state is ChannelErrorState) {
           return Center(
             child: Text('error'),
